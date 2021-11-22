@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_news_flutter/models/google_data_model.dart';
-import 'package:google_news_flutter/repository/show_web_news.dart';
+import 'package:google_news_flutter/Screens/show_web_news.dart';
 
 
 class FeedNews extends StatelessWidget {

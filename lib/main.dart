@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_news_flutter/feed_news.dart';
+import 'package:google_news_flutter/Screens/feed_news.dart';
 import 'package:google_news_flutter/models/google_data_model.dart';
 import 'package:google_news_flutter/repository/google_news_data.dart';
 
