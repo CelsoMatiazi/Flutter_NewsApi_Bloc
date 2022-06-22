@@ -1,15 +1,15 @@
-
-
 import 'package:google_news_flutter/models/google_data_model.dart';
 
 abstract class HomeScreenState{
   final List<GoogleDataModel>? data;
   final String? message;
   final double? searchBarHeight;
+  final String? searchWord;
   HomeScreenState({
     this.data,
     this.message,
     this.searchBarHeight = 0.0,
+    this.searchWord
   });
 }
 
@@ -21,6 +21,12 @@ class HomeScreenStateData extends HomeScreenState{
   HomeScreenStateData({
     required List<GoogleDataModel> data
   }) : super(data: data);
+}
+
+class HomeScreenStateDataByWord extends HomeScreenState{
+  HomeScreenStateDataByWord({
+    required String word
+  }) : super(searchWord: word);
 }
 
 class HomeScreenStateLoading extends HomeScreenState{
