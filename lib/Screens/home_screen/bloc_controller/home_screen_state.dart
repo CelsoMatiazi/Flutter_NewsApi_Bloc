@@ -33,6 +33,7 @@ class HomeScreenStateError extends HomeScreenState{
 
 class HomeScreenStateShowSearchBar extends HomeScreenState{
   HomeScreenStateShowSearchBar({
-    required double height
-  }) : super(searchBarHeight: height);
+    required double height,
+    required List<GoogleDataModel> data
+  }) : super(searchBarHeight: height, data: data);
 }

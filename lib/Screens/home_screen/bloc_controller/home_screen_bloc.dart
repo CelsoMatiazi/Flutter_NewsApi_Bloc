@@ -27,10 +27,9 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState>{
 
   void _showSearchBar(HomeScreenEventShowSearchBar event, Emitter<HomeScreenState> emit){
       if(event.height == 0.0){
-        emit(HomeScreenStateShowSearchBar(height: 65.0));
+        emit(HomeScreenStateShowSearchBar(height: 65.0, data: state.data ?? []));
       }else{
-        emit(HomeScreenStateShowSearchBar(height: 0.0));
-        //add(HomeScreenEventFindAll());
+        emit(HomeScreenStateShowSearchBar(height: 0.0, data: state.data ?? []));
       }
   }
 
