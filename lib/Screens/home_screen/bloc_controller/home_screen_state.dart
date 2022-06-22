@@ -5,9 +5,11 @@ import 'package:google_news_flutter/models/google_data_model.dart';
 abstract class HomeScreenState{
   final List<GoogleDataModel>? data;
   final String? message;
+  final double? searchBarHeight;
   HomeScreenState({
     this.data,
-    this.message
+    this.message,
+    this.searchBarHeight = 0.0,
   });
 }
 
@@ -22,9 +24,15 @@ class HomeScreenStateData extends HomeScreenState{
 }
 
 class HomeScreenStateLoading extends HomeScreenState{
-  HomeScreenStateLoading() : super(data: []);
+  HomeScreenStateLoading() : super();
 }
 
 class HomeScreenStateError extends HomeScreenState{
   HomeScreenStateError({required String message}) : super(message: message);
+}
+
+class HomeScreenStateShowSearchBar extends HomeScreenState{
+  HomeScreenStateShowSearchBar({
+    required double height
+  }) : super(searchBarHeight: height);
 }

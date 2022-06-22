@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -17,7 +16,6 @@ class _ShowWebNewsState extends State<ShowWebNews> {
 
   @override
   void initState() {
-    // TODO: implement initState
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
     super.initState();
   }

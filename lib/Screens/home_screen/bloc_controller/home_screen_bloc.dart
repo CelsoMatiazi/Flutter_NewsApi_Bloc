@@ -12,6 +12,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState>{
   }) : _repository = repository,
        super(HomeScreenStateInitial()){
           on<HomeScreenEventFindAll>(_findAllNews);
+          on<HomeScreenEventShowSearchBar>(_showSearchBar);
   }
 
   Future<void> _findAllNews(HomeScreenEventFindAll event, Emitter<HomeScreenState> emit) async{
@@ -22,6 +23,15 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState>{
     }catch(e){
       emit(HomeScreenStateError(message: "Erro ao atualizar o feed de noticias"));
     }
+  }
+
+  void _showSearchBar(HomeScreenEventShowSearchBar event, Emitter<HomeScreenState> emit){
+      if(event.height == 0.0){
+        emit(HomeScreenStateShowSearchBar(height: 65.0));
+      }else{
+        emit(HomeScreenStateShowSearchBar(height: 0.0));
+        //add(HomeScreenEventFindAll());
+      }
   }
 
 }
