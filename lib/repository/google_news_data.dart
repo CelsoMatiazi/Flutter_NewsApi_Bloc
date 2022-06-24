@@ -5,9 +5,9 @@ import 'package:http/http.dart' as http;
 
 class GoogleNewsRepository{
 
-  Future<List<GoogleDataModel>>getGoogleNews() async {
+  Future<List<GoogleDataModel>>getGoogleNews({String country = "br"}) async {
     var url = Uri.parse(
-        'https://newsapi.org/v2/top-headlines?country=br&apiKey=5b90aec09eed4dcb9af7af9cad4da51f');
+        'https://newsapi.org/v2/top-headlines?country=$country&apiKey=5b90aec09eed4dcb9af7af9cad4da51f');
     var response = await http.get(url,);
     
     debugPrint('Response status: ${response.statusCode}');

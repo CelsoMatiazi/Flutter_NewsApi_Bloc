@@ -1,7 +1,10 @@
 
 abstract class HomeScreenEvent{}
 
-class HomeScreenEventFindAll extends HomeScreenEvent{}
+class HomeScreenEventFindAll extends HomeScreenEvent{
+  final String? country;
+  HomeScreenEventFindAll({this.country});
+}
 
 class HomeScreenEventFindByWord extends HomeScreenEvent{
   final String word;

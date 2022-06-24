@@ -32,8 +32,9 @@ class FeedNews extends StatelessWidget {
            SizedBox(
                width: double.maxFinite,
                height: 250 ,
-               child: data.urlToImage.isNotEmpty ? Image.network(data.urlToImage, fit: BoxFit.cover,):
-               Image.network(urlNoImage)
+               child: data.urlToImage.isNotEmpty
+                   ? Image.network(data.urlToImage, fit: BoxFit.cover,)
+                   : Image.network(urlNoImage)
            ),
           Text(data.description,),
           const Divider(),

@@ -27,7 +27,7 @@ class _ShowWebNewsState extends State<ShowWebNews> {
     return  Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text("Google News"),
+        title: const Text("World News"),
       ),
       body: WebView(
         initialUrl: widget.url,

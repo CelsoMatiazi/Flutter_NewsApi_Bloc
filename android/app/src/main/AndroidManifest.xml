@@ -2,7 +2,7 @@
     package="com.example.google_news_flutter">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="google_news_flutter"
+        android:label="World News"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

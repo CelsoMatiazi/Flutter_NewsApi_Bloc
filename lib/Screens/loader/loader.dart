@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 
 class Loader<B extends StateStreamable<S>, S> extends StatelessWidget {
@@ -14,11 +15,9 @@ class Loader<B extends StateStreamable<S>, S> extends StatelessWidget {
         builder: (context, loading){
           return Visibility(
               visible: loading,
-              child:  const SizedBox(
-                // height: MediaQuery.of(context).size.height - 80,
-                // width: MediaQuery.of(context).size.width,
+              child:  SizedBox(
                 child: Center(
-                  child: CircularProgressIndicator(),
+                  child: Lottie.asset("assets/animations/world.json", width: 200),
                 ),
               )
           );

@@ -5,6 +5,7 @@ import 'package:google_news_flutter/Screens/home_screen/bloc_controller/home_scr
 import 'package:google_news_flutter/Screens/home_screen/bloc_controller/home_screen_state.dart';
 import 'package:google_news_flutter/Screens/loader/loader.dart';
 import 'package:google_news_flutter/models/google_data_model.dart';
+import 'components/custom_drawer.dart';
 import 'components/feed_news.dart';
 import 'components/search_bar.dart';
 
@@ -16,12 +17,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
+  final List<String> categories = ["music", "art", "people", "economy", "politics", "technology"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldState,
+      endDrawer: CustomDrawer(categories: categories),
+
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text("App News"),
+        title: const Text("World News",
+          style: TextStyle(
+            fontWeight: FontWeight.w300,
+            letterSpacing: 2
+          ),),
         actions: [
           BlocSelector<HomeScreenBloc, HomeScreenState, double>(
             selector: (state){
@@ -36,7 +48,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: const Icon(Icons.search),
               );
             },
-          )
+          ),
+
+      IconButton(
+        onPressed: (){
+          _scaffoldState.currentState!.openEndDrawer();
+        },
+        icon: const Icon(Icons.menu, color: Colors.white,),
+      )
+
         ],
       ),
       body: BlocListener<HomeScreenBloc, HomeScreenState>(
@@ -103,5 +123,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
 
 
