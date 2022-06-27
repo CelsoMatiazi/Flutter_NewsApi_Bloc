@@ -16,8 +16,12 @@ class Loader<B extends StateStreamable<S>, S> extends StatelessWidget {
           return Visibility(
               visible: loading,
               child:  SizedBox(
-                child: Center(
-                  child: Lottie.asset("assets/animations/world.json", width: 200),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Lottie.asset("assets/animations/world.json", width: 200),
+                    Text("Searching...")
+                  ],
                 ),
               )
           );
