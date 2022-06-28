@@ -9,8 +9,6 @@ class GoogleNewsRepository{
     var url = Uri.parse(
         'https://newsapi.org/v2/top-headlines?country=$country&apiKey=5b90aec09eed4dcb9af7af9cad4da51f');
     var response = await http.get(url,);
-    
-    debugPrint('Response status: ${response.statusCode}');
     List respData = json.decode(response.body)["articles"] ?? [];
     var googleNews = respData.map((e) => GoogleDataModel.fromMap(e)).toList();
     return googleNews;
@@ -21,8 +19,6 @@ class GoogleNewsRepository{
     var url = Uri.parse(
         'https://newsapi.org/v2/everything?q=$word&apiKey=5b90aec09eed4dcb9af7af9cad4da51f');
     var response = await http.get(url);
-
-    debugPrint('Response status: ${response.statusCode}');
     List respData = json.decode(response.body)["articles"] ?? [];
     var googleNews = respData.map((e) => GoogleDataModel.fromMap(e)).toList();
     return googleNews;

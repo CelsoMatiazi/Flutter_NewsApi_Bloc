@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +16,12 @@ class SearchBar extends StatefulWidget {
   State<SearchBar> createState() => _SearchBarState();
 }
 
-class _SearchBarState extends State<SearchBar> {
+class _SearchBarState extends State<SearchBar> with SingleTickerProviderStateMixin{
+
+  late final AnimationController _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2)
+  )..repeat();
 
   final _textCtrl = TextEditingController();
 
@@ -24,6 +30,7 @@ class _SearchBarState extends State<SearchBar> {
   @override
   void dispose() {
     _textCtrl.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -37,8 +44,6 @@ class _SearchBarState extends State<SearchBar> {
         return Stack(
           alignment: Alignment.topCenter,
           children: [
-
-
             AnimatedContainer(
               duration: const Duration(milliseconds: 600),
               height: height == 0.0 ? 80 : 0,
@@ -52,22 +57,54 @@ class _SearchBarState extends State<SearchBar> {
                     return Stack(
                       alignment: Alignment.center,
                       children: [
-                        Lottie.asset("assets/animations/moving_circle.json", width: 76),
-                        Container(
-                          height: 46,
-                          width: 46,
-                          decoration:  const BoxDecoration(
-                            shape: BoxShape.circle,
-                            gradient: LinearGradient(
-                              begin:Alignment.centerLeft ,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Colors.pink,
-                                Colors.deepPurple,
-                              ]
-                            ),
-                          ),
+                        BlocSelector<HomeScreenBloc, HomeScreenState, String>(
+                          selector: (state){
+                            return state.country ?? "";
+                          },
+                          builder: (_, selectedCountry){
+                            if(country[index] == selectedCountry){
+                              return Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Lottie.asset("assets/animations/moving_circle.json", width: 78),
+                                  AnimatedBuilder(
+                                    animation: _controller,
+                                    builder: (_,child) {
+                                      return Transform.rotate(
+                                          angle: _controller.value * 2 * pi,
+                                          child: child,
+                                      );
+                                    },
+                                    child: Container(
+                                      height: 48,
+                                      width: 48,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          gradient: LinearGradient(
+                                              begin:Alignment.centerLeft ,
+                                              end: Alignment.bottomRight,
+                                              colors: [Colors.pink, Colors.deepPurple[700]!,])
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }else{
+                              return Container(
+                                margin: EdgeInsets.symmetric(horizontal: 16),
+                                height: 46,
+                                width: 46,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    gradient: LinearGradient(
+                                        begin:Alignment.centerLeft ,
+                                        end: Alignment.bottomRight,
+                                        colors: [Colors.deepOrange[800]!, Colors.orange[300]!,])
+                                ),
 
+                              );
+                            }
+                          }
                         ),
 
                         GestureDetector(
