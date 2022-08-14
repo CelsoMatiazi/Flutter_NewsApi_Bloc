@@ -42,8 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (_, height){
               return IconButton(
                 onPressed: (){
-                  context.read<HomeScreenBloc>().add(HomeScreenEventShowSearchBar(height: height));
                   FocusScope.of(context).unfocus();
+                  context.read<HomeScreenBloc>().add(HomeScreenEventShowSearchBar(height: height));
                 },
                 icon: const Icon(Icons.search),
               );
