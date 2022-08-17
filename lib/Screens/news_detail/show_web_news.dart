@@ -16,7 +16,7 @@ class _ShowWebNewsState extends State<ShowWebNews> {
 
   @override
   void initState() {
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+    if (Platform.isAndroid) WebView.platform = AndroidWebView();
     super.initState();
   }
 
