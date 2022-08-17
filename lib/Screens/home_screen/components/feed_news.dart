@@ -21,7 +21,8 @@ class FeedNews extends StatelessWidget {
     return GestureDetector(
       onTap: (){
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => ShowWebNews(url: data.url)));
+            MaterialPageRoute(builder: (context) => ShowWebNews(url: data.url)))
+            .then((value) => FocusManager.instance.primaryFocus?.unfocus());
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,9 +30,10 @@ class FeedNews extends StatelessWidget {
            Text(data.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold ),),
            Text(data.name,),
            Text("${dateNews.day}/${dateNews.month}/${dateNews.year}"),
-           SizedBox(
+           Container(
                width: double.maxFinite,
                height: 250 ,
+               color: Colors.grey[200],
                child: data.urlToImage.isNotEmpty
                    ? Image.network(data.urlToImage, fit: BoxFit.cover,)
                    : Image.network(urlNoImage)

@@ -42,8 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (_, height){
               return IconButton(
                 onPressed: (){
+                  FocusManager.instance.primaryFocus?.unfocus();
                   context.read<HomeScreenBloc>().add(HomeScreenEventShowSearchBar(height: height));
-                  FocusScope.of(context).unfocus();
                 },
                 icon: const Icon(Icons.search),
               );
@@ -53,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
       IconButton(
         onPressed: (){
           _scaffoldState.currentState!.openEndDrawer();
+          FocusManager.instance.primaryFocus?.unfocus();
         },
         icon: const Icon(Icons.menu, color: Colors.white,),
       )

@@ -5,11 +5,13 @@ abstract class HomeScreenState{
   final String? message;
   final double? searchBarHeight;
   final String? searchWord;
+  final String? country;
   HomeScreenState({
     this.data,
     this.message,
     this.searchBarHeight = 0.0,
-    this.searchWord
+    this.searchWord,
+    this.country
   });
 }
 
@@ -19,8 +21,9 @@ class HomeScreenStateInitial extends HomeScreenState{
 
 class HomeScreenStateData extends HomeScreenState{
   HomeScreenStateData({
-    required List<GoogleDataModel> data
-  }) : super(data: data);
+    required List<GoogleDataModel> data,
+    required String country
+  }) : super(data: data, country: country);
 }
 
 class HomeScreenStateDataByWord extends HomeScreenState{
@@ -43,3 +46,5 @@ class HomeScreenStateShowSearchBar extends HomeScreenState{
     required List<GoogleDataModel> data
   }) : super(searchBarHeight: height, data: data);
 }
+
+

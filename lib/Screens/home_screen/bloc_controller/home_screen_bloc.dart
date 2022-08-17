@@ -18,9 +18,10 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState>{
 
   Future<void> _findAllNews(HomeScreenEventFindAll event, Emitter<HomeScreenState> emit) async{
     try{
+      emit(HomeScreenStateData(data: [], country: event.country ?? ""));
       emit(HomeScreenStateLoading());
       final data = await _repository.getGoogleNews(country: event.country ?? "br");
-      emit(HomeScreenStateData(data: data));
+      emit(HomeScreenStateData(data: data, country: event.country ?? "br"));
     }catch(e){
       emit(HomeScreenStateError(message: "Erro ao atualizar o feed de noticias"));
     }
@@ -33,7 +34,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState>{
     try{
       emit(HomeScreenStateLoading());
       final data = await _repository.getGoogleNewsByWord(event.word);
-      emit(HomeScreenStateData(data: data));
+      emit(HomeScreenStateData(data: data, country: "us"));
     }catch(e){
       emit(HomeScreenStateError(message: "Erro ao atualizar o feed de noticias"));
     }
